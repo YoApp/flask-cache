@@ -13,11 +13,8 @@ class SASLMemcachedCache(MemcachedCache):
         if servers is None:
             servers = ['127.0.0.1:11211']
 
-        import pylibmc
-        self._client = pylibmc.Client(servers,
-                                      username=username,
-                                      password=password,
-                                      binary=True)
+        import bmemcached
+        self._client = bmemcached.Client(servers, username, password)
 
         self.key_prefix = key_prefix
 
